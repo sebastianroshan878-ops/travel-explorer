@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Travel Explorer</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7fc;
+}
+
+
+
+header{
+background:#0d47a1;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 8%;
+}
+
+.logo{
+font-size:2rem;
+font-weight:bold;
+color:white;
+}
+
+.nav-links{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-size:1rem;
+}
+
+.nav-links a:hover{
+color:#ffd54f;
+}
+
+.menu-btn{
+display:none;
+font-size:1.8rem;
+color:white;
+cursor:pointer;
+}
+
+
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.5),
+rgba(0,0,0,0.5)),
+url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero-content h1{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.hero-content p{
+font-size:1.3rem;
+max-width:700px;
+margin:auto;
+margin-bottom:25px;
+}
+
+.btn{
+background:#ff9800;
+padding:12px 25px;
+border-radius:30px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#f57c00;
+}
+
+
+
+section{
+padding:80px 10%;
+}
+
+.section-title{
+text-align:center;
+font-size:2.5rem;
+color:#0d47a1;
+margin-bottom:40px;
+}
+
+
+
+.about{
+text-align:center;
+font-size:1.1rem;
+line-height:1.8;
+max-width:900px;
+margin:auto;
+}
+
+
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.feature-card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.feature-card i{
+font-size:3rem;
+color:#0d47a1;
+margin-bottom:15px;
+}
+
+
+
+.destinations{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.card-content{
+padding:20px;
+}
+
+.card-content h3{
+color:#0d47a1;
+margin-bottom:10px;
+}
+
+
+
+.quote{
+background:linear-gradient(135deg,#2196f3,#7b1fa2);
+color:white;
+text-align:center;
+padding:60px;
+font-size:1.8rem;
+font-style:italic;
+}
+
+
+
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.testimonial{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+
+.contact-form{
+max-width:700px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:10px;
+}
+
+.contact-form button{
+width:100%;
+padding:12px;
+background:#0d47a1;
+color:white;
+border:none;
+border-radius:10px;
+font-size:1rem;
+cursor:pointer;
+}
+
+
+
+footer{
+background:#0d47a1;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+.social-icons a{
+color:white;
+margin:0 10px;
+font-size:1.5rem;
+}
+
+
+
+@media(max-width:768px){
+
+.nav-links{
+display:none;
+flex-direction:column;
+background:#0d47a1;
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+padding:20px;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.menu-btn{
+display:block;
+}
+
+.hero-content h1{
+font-size:2.5rem;
+}
+
+.hero-content p{
+font-size:1rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">Travel Explorer</div>
+
+<ul class="nav-links" id="menu">
+<li><a href="#home">Home</a></li>
+<li><a href="#destinations">Destinations</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<div class="menu-btn" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+</nav>
+
+</header>
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>Discover Your Next Adventure</h1>
+
+<p>
+Travel the world, explore hidden gems, enjoy breathtaking landscapes,
+and create unforgettable memories with Travel Explorer.
+</p>
+
+<a href="#destinations" class="btn">
+Start Exploring
+</a>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">About Travel Explorer</h2>
+
+<div class="about">
+
+<p>
+Travel Explorer is a modern travel platform that helps travelers discover beautiful destinations,
+plan exciting trips, and experience different cultures around the world.
+Whether you love beaches, mountains, forests, or historical places,
+our mission is to inspire unforgettable journeys.
+</p>
+
+</div>
+
+</section>
+
+<section id="features">
+
+<h2 class="section-title">Why Choose Us?</h2>
+
+<div class="features">
+
+<div class="feature-card">
+<i class="fas fa-map-marked-alt"></i>
+<h3>Best Destinations</h3>
+<p>Explore famous destinations and hidden travel gems.</p>
+</div>
+
+<div class="feature-card">
+<i class="fas fa-plane"></i>
+<h3>Easy Planning</h3>
+<p>Plan your trip with useful travel information.</p>
+</div>
+
+<div class="feature-card">
+<i class="fas fa-camera"></i>
+<h3>Travel Inspiration</h3>
+<p>Find your dream vacation destination.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="destinations">
+
+<h2 class="section-title">Popular Destinations</h2>
+
+<div class="destinations">
+
+<div class="card">
+<img src="munnar.jpg">
+<div class="card-content">
+<h3>Munnar</h3>
+<p>
+Munnar is known for tea plantations, misty hills,
+cool weather and scenic beauty.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="waynad.jpg">
+<div class="card-content">
+<h3>Wayanad</h3>
+<p>
+Wayanad offers waterfalls, wildlife sanctuaries,
+trekking routes and beautiful forests.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="goa.jpg">
+<div class="card-content">
+<h3>Goa</h3>
+<p>
+Goa is famous for beaches, nightlife,
+water sports and Portuguese culture.
+</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="quote">
+"Travel is the only thing you buy that makes you richer."
+</section>
+
+<section>
+
+<h2 class="section-title">Traveler Reviews</h2>
+
+<div class="testimonials">
+
+<div class="testimonial">
+⭐⭐⭐⭐⭐
+<p>
+Amazing destination recommendations and easy trip planning.
+</p>
+<h4>- Rahul Sharma</h4>
+</div>
+
+<div class="testimonial">
+⭐⭐⭐⭐⭐
+<p>
+A wonderful platform for discovering beautiful places.
+</p>
+<h4>- Priya Nair</h4>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2 class="section-title">Contact Us</h2>
+
+<form class="contact-form">
+
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Your Email" required>
+
+<textarea rows="5" placeholder="Your Message"></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+</section>
+
+<footer>
+
+<h2>Travel Explorer</h2>
+
+<p>Turning travel dreams into unforgettable adventures.</p>
+
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+</div>
+
+<br>
+
+<p>© 2026 Travel Explorer. All Rights Reserved.</p>
+
+</footer>
+
+<script>
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+</script>
+
+</body>
+</html>
